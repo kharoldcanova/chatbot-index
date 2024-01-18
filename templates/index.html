@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Documento y Chatbot</title>
+    <!-- CDN de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Subir Documento</h1>
+        <!-- Formulario para subir archivos -->
+        <form action="/tu_ruta_de_subida" method="post" enctype="multipart/form-data" class="my-4">
+            <div class="form-group">
+                <label for="fileUpload">Selecciona un archivo:</label>
+                <input type="file" class="form-control-file" id="fileUpload" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+
+        <!-- Formulario del Chatbot -->
+        <div class="chatbot-container my-4">
+            <h2>Chatbot</h2>
+            <form id="chatbotForm">
+                <div class="form-group">
+                    <label for="userInput">Tu pregunta:</label>
+                    <input type="text" id="userInput" class="form-control" placeholder="Escribe tu pregunta aquí...">
+                </div>
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+            <div
+            <div id="chatbotResponse" class="mt-3"></div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap y JavaScript para el Chatbot -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+       document.getElementById('chatbotForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const userInput = document.getElementById('userInput').value;
+    fetch('/query', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: userInput }) // Asegúrate de que esto coincida con la expectativa de tu API
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('chatbotResponse').innerText = data.reply;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+    </script>
+</body>
+</html>

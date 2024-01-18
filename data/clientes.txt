@@ -1,0 +1,5 @@
+ID001, Juan Pérez, 35 años, juan.perez@email.com
+ID002, Ana Gómez, 28 años, ana.gomez@email.com
+ID003, Carlos Ruiz, 42 años, carlos.ruiz@email.com
+ID004, Laura Martínez, 30 años, laura.martinez@email.com
+ID005, Sergio López, 38 años, sergio.lopez@email.com
